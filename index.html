@@ -14,7 +14,10 @@
         <div id="wrapper">
             <div id="index" class="section">
                 <h1>Jazz Standards Library</h1>
-                <div id="start" class="view">Hello</div>
+                <div id="start" class="view">
+                    <div class="standard-list">
+                    </div>
+                </div>
                 <div id="title" class="view"></div>
                 <div id="variation" class="view"></div>     
             </div>
@@ -26,9 +29,7 @@
             </div>
         </div>
         {{#standard}}
-        <a href="" class="sp-item sp-track">
-            <span class="sp-track-field-name">Name</span>
-        </a>
+        <div class="standard-entry">{{title}}</div>
         {{/standard}}
         <script src="/js/rainbow-custom.min.js"></script>
         <script src="/js/mustache.js"></script>
