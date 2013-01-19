@@ -29,9 +29,11 @@
                 </p>
             </div>
         </div>
-        {{#standard}}
-        <div class="standard-entry">{{title}}</div>
-        {{/standard}}
+        <script type="text/template" id="template-standards">
+            {{#standards}}
+            <div class="standard-entry">{{title}}</div>
+            {{/standards}}
+        </script>
         <script src="/js/rainbow-custom.min.js"></script>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/mustache.js"></script>
