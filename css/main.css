@@ -73,7 +73,7 @@ th {
 	margin-bottom: 20px;
 }
 
-tr:nth-of-type(even) {
+tbody tr:nth-of-type(odd) {
 	background-color: #DDDDDD;
 }
 
