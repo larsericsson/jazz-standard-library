@@ -225,7 +225,6 @@ window.onload = function() {
                     var tmpSongs = results.response.songs,
                         songs = [];
 
-                    console.log('songs', tmpSongs);
                     for (var i = 0; i < tmpSongs.length; i++) {
                         if (tmpSongs[i].tracks && tmpSongs[i].tracks.length > 0) {
                             var hasSpotify = false;
@@ -233,10 +232,12 @@ window.onload = function() {
                                 if (tmpSongs[i].tracks[j].hasOwnProperty('foreign_id')) {
                                     hasSpotify = true;
                                     tmpSongs[i].tracks[j].foreign_id = tmpSongs[i].tracks[j].foreign_id.replace('-WW', '');
+                                    tmpSongs[i].tracks[j] = models.Track.fromURI(tmpSongs[i].tracks[j].foreign_id, function (track) {
+                                    });
                                 }
                             }
                             if (hasSpotify) {
-                                songs.push( tmpSongs[i]);
+                                songs.push(tmpSongs[i]);
                             }
                         }
                     }
