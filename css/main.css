@@ -27,3 +27,7 @@ h1 {font-size:2em;}
 .columns {
 	columns: 4;
 }
+
+.standard-entry {
+  cursor: pointer;
+}
