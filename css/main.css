@@ -40,18 +40,28 @@ h1 {font-size:2em;}
 }
 
 .listlink:hover {
-	background-color: #DDDDDD;
+	background-color: #BBBBBB;
+	cursor: pointer;
 }
 
 td {
 	padding-right: 20px;
 	border: 0;
 	margin: 0;
+	padding: 3px 2px;
 }
 
 table {
-	border: 0;
+	border-spacing: 0;
 	width: 100%;
+}
+
+th {
+	text-align: left;
+}
+
+tr:nth-of-type(even) {
+	background-color: #DDDDDD;
 }
 
 .standards-letter-heading {
