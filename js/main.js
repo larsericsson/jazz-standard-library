@@ -65,5 +65,21 @@ window.onload = function() {
         xhr.send(null);
     }
 
+    function search(title, key) {
+        var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV';
+
+        xhr.open('GET', 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY+'&format=json&results=3&title='
+                            +title
+                            +'&bucket=id:spotify-WW&bucket=tracks&limit=true&bucket=audio_summary');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState != 4 || xhr.status != 200) return;
+
+            var wrapper = document.getElementById('results');
+            wrapper.innerHTML = 'ok';
+            wrapper.innerHTML += xhr.responseText;
+        };
+        xhr.send(null);
+    }
+
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
