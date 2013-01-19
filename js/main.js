@@ -148,9 +148,20 @@ window.onload = function() {
             }
         }
 
+        var _loading = [], current = 0;
+        function _animateLoader() {
+            if (_loading.is(':visible')) {
+                current = (current + 1) % 12;
+                _loading.css({'backgroundPosition': current * 30 });
+                setTimeout(_animateLoader, 80);
+            }
+        }
+
         function _show(id) {
             _hideAll();
-            document.getElementById(id).style.display = 'block';;
+            document.getElementById(id).style.display = 'block';
+            _loading = $('.loading:visible');
+            _animateLoader();
         }
 
         var _songCache;
@@ -181,7 +192,6 @@ window.onload = function() {
                         search: title,
                         songs: _songCache
                     }));
-                    console.log($('#variations-table'));
                     $("#variations-table").tablesorter();
                 });
             },

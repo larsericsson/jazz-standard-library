@@ -102,3 +102,11 @@ tr:nth-of-type(even) {
 		-webkit-columns: 3;
 	}
 }
+
+.loading {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 30px auto;
+  background-image: url(../img/loading_indicator.png);
+}
