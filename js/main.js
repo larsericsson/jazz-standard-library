@@ -119,9 +119,6 @@ window.onload = function() {
     function renderStandards() {
         var template = $('#template-standards').html();
         $('#standards-list').html(Mustache.to_html(template, standardsArray));
-        /*$('#standards-list .standard-entry').click(function () {
-            View.title($(this).html());
-        });*/
     }
 
     function tabs() {
@@ -159,6 +156,11 @@ window.onload = function() {
                 EchoNest.search({title: title}, function (res) {
                     console.log(res);
                     _show('title');
+                    var template = $('#template-title').html();
+                    $('#title').html(Mustache.to_html(template, {
+                        search: title,
+                        songs: res.response.songs
+                    }));
                 });
             }       
         };
@@ -202,5 +204,11 @@ window.onload = function() {
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
     tabs();
     renderStandards();
+
+    $('body').on('click', '.link', function (e) {
+        var view = $(this).attr('data-view'), param = $(this).attr('data-params');
+        view && View[view](param);
+    });
+
     View.start();
 };
