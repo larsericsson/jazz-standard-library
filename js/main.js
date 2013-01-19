@@ -126,8 +126,6 @@ window.onload = function() {
         return keys[number];
     }
 
-    console.log(getKey(11));
-
     function tabs() {
         var args = models.application.arguments;
         var current = document.getElementById((args && args.length > 0) ? args[0] : 'index');
@@ -168,6 +166,11 @@ window.onload = function() {
                         songs: songs
                     }));
                 });
+            },
+
+            variation: function() {
+                _show('variation');
+                console.log("hej");
             }       
         };
     }();
