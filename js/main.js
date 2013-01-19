@@ -158,12 +158,15 @@ window.onload = function() {
                 setTimeout(_animateLoader, 80);
             }
         }
+        function _startLoaders() {
+            _loading = $('.loading:visible');
+            _animateLoader();
+        }
 
         function _show(id) {
             _hideAll();
             document.getElementById(id).style.display = 'block';
-            _loading = $('.loading:visible');
-            _animateLoader();
+            _startLoaders();
         }
 
         var _songCache;
@@ -201,14 +204,6 @@ window.onload = function() {
             variation: function(id) {
                 _show('loading');
                 var song = _getCachedSong(id), t, totalTracks = 0;
-                if (song.audio_summary.analysis_url) {
-                    EchoNest.song(song.id, function (song) {
-                        EchoNest.analysis(song.audio_summary.analysis_url, function (analysis) {
-                            console.log("hej");
-                            console.log(analysis);
-                        });
-                    });
-                }
 
                 var render = function (song) {
                     _show('variation');
@@ -222,6 +217,16 @@ window.onload = function() {
                     list.node.classList.add("sp-light");
 
                     $('#variation').append(list.node);
+                    if (song.audio_summary.analysis_url) {
+                        $('#visual').html('<span class="loading"></span>');
+                        _startLoaders();
+
+                        EchoNest.song(song.id, function (song) {
+                            EchoNest.analysis(song.audio_summary.analysis_url, function (analysis) {
+                                $('#visual').html('ok man');
+                            });
+                        });
+                    }
                 }
                 var tracks = {};
                 song.collection = new models.Playlist();
