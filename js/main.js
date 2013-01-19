@@ -3,11 +3,8 @@ window.onload = function() {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
 
-    function test(args) {
-        console.log('test', args);
-    }
-
-    function tabs(args) {
+    function tabs() {
+        var args = models.application.arguments;
         var current = document.getElementById((args && args.length > 0) ? args[0] : 'index');
         var sections = document.getElementsByClassName('section');
         for (var i=0, l = sections.length; i<l; i++) {
@@ -18,19 +15,7 @@ window.onload = function() {
         current.style.display = 'block';
     }
 
-    function inpoint() {
-        var router = {
-            tabs: tabs,
-            test: test
-        }, args = models.application.arguments;
-
-        if (args.length > 0 && router.hasOwnProperty(args[0])) {
-            router[args[0]](args.slice(1, args.length));
-        } else {
-            tabs(args);
-        }
-    }
-    models.application.observe(models.EVENT.ARGUMENTSCHANGED, inpoint);
+    models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
     tabs();
 
 
