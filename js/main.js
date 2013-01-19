@@ -235,6 +235,7 @@ window.onload = function() {
                                 tmpSongs[i].audio_summary.humanKey = getKey(
                                     tmpSongs[i].audio_summary.key,
                                     tmpSongs[i].audio_summary.mode);
+                                tmpSongs[i].audio_summary.humanTempo = Math.round(tmpSongs[i].audio_summary.tempo);
                                 if (tmpSongs[i].tracks[j].hasOwnProperty('foreign_id')) {
                                     hasSpotify = true;
                                     tmpSongs[i].tracks[j].foreign_id = tmpSongs[i].tracks[j].foreign_id.replace('-WW', '');
