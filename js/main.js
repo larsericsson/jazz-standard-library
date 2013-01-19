@@ -181,6 +181,8 @@ window.onload = function() {
                         search: title,
                         songs: _songCache
                     }));
+                    console.log($('#variations-table'));
+                    $("#variations-table").tablesorter();
                 });
             },
 

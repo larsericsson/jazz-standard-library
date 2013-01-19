@@ -70,14 +70,18 @@
         </script>
         <script type="text/template" id="template-title">
             <a href="#" class="link" data-view="start">Standards</a> - {{search}}<br />
-            <table>
+            <table id="variations-table">
+            <thead>
                 <tr><th>Artist</th><th>Tempo</th><th>Key</th>
+            </thead>
+            <tbody>
             {{#songs}}
                 <tr class="link listlink" data-view="variation" data-params="{{id}}">
                     <td>{{artist_name}}</td><td>{{audio_summary.humanTempo}}</td><td>{{audio_summary.humanKey}}</td>
                 </tr>
             {{/songs}}
-            </ul>
+            </tbody>
+            </table>
         </script>
         <script type="text/template" id="template-variation">
             <a href="#" class="link" data-view="start">Standards</a> - <a href="#" class="link" data-view="title" data-params="{{activeStandard}}">{{activeStandard}}</a> - Variations
@@ -89,6 +93,7 @@
         </script>
         <script src="/js/rainbow-custom.min.js"></script>
         <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery.tablesorter.min.js"></script>
         <script src="/js/mustache.js"></script>
         <script src="/js/main.js"></script>
     </body>
