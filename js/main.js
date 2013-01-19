@@ -153,37 +153,52 @@ window.onload = function() {
             document.getElementById(id).style.display = 'block';;
         }
 
+        var _songCache;
+        function _getCachedSong(id) {
+            if (_songCache) {
+                for (var i = 0; i < _songCache.length; i++) {
+                    if (_songCache[i].id == id) {
+                        return _songCache[i];
+                    }
+                }
+            }
+            return null;
+        }
+
         return {
             start: function () {
+                _songCache = null;
                 _show('start');
-
             },
             title: function (title) {
                 _show('loading');
                 activeStandard = title;
                 EchoNest.search({title: title}, function (songs) {
+                    _songCache = songs;
                     _show('title');
                     var template = $('#template-title').html();
                     $('#title').html(Mustache.to_html(template, {
                         search: title,
-                        songs: songs
+                        songs: _songCache
                     }));
                 });
             },
 
             variation: function(id) {
                 _show('variation');
+                var song = _getCachedSong(id);
                 var template = $('#template-variation').html();
                 $('#variation').html(Mustache.to_html(template, {
                     activeStandard: activeStandard,
-                    activeVariation: id
+                    activeVariation: id,
+                    song: song
                 }));
             }       
         };
     }();
 
-
     var EchoNest = function () {
+
         return {
             search: function (search, cb) {
                 var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
