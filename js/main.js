@@ -175,7 +175,7 @@ window.onload = function() {
                         +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary',
                     params = {
                         format: 'json',
-                        results: 3,
+                        results: 200,
                         limit: 'true'
                     };
 
