@@ -2,6 +2,8 @@
 window.onload = function() {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
+    var views = sp.require('$api/views');
+
     var activeStandard, activeVariation;
 
     var standardsArray = {
@@ -208,8 +210,13 @@ window.onload = function() {
                         activeVariation: id,
                         song: song
                     }));
+                    var list = new views.List(song.collection);
+                    list.node.classList.add("sp-light");
+
+                    $('#variation').append(list.node);
                 }
                 var tracks = {};
+                song.collection = new models.Playlist();
                 for (var i = 0; i < song.tracks.length; i++) {
                     totalTracks++;
                     t = models.Track.fromURI(song.tracks[i].uri, function (track) {
@@ -220,6 +227,7 @@ window.onload = function() {
                             for (var uri in tracks) {
                                 if (tracks.hasOwnProperty(uri)) {
                                     song.tracks.push(tracks[uri]);
+                                    song.collection.add(tracks[uri]);
                                 }
                             }
                             render(song);
@@ -242,6 +250,7 @@ window.onload = function() {
             if (existing.length > 0) {
                 songs[songs.indexOf(existing[0])].tracks = songs[songs.indexOf(existing[0])].tracks.concat(song.tracks);
             } else {
+                song.uri = song.tracks[0].uri;
                 songs.push(song);
             }
             return songs;
@@ -313,8 +322,10 @@ window.onload = function() {
         view && View[view](param);
     });
     $('body').on('click', '.player', function (e) {
+        e.preventDefault();
         var uri = $(this).attr('data-uri');
         uri && models.player.play(uri);
+        return false;
     });
 
     View.start();

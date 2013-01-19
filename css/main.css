@@ -22,7 +22,6 @@ h1 {font-size:2em;}
 
 /* Index */
 #index h1, #index ul {margin:0 0 30px;}
-#index a:hover {color:#83be20;}
 
 .columns {
 	-webkit-columns: 1;
@@ -111,3 +110,17 @@ tbody tr:nth-of-type(odd) {
   margin: 30px auto;
   background-image: url(../img/loading_indicator.png);
 }
+
+.arrow {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 7px;
+  height:0;
+  width:0;
+  left: 7px;
+  margin-right: -7px;
+  position: relative;
+ }
+ .listlink:hover .arrow {
+  border-color: transparent transparent transparent #767676;
+ }
