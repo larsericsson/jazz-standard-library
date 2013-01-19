@@ -19,9 +19,9 @@
 			}
 		},
 		{
-			"arguments": "tabs",
+			"arguments": "about",
 			"title": {
-				"en": "How to use tabs"
+				"en": "About"
 			}
         }
 	],
