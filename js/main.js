@@ -19,18 +19,26 @@ window.onload = function() {
     tabs();
 
 
-/*
     function search(search, cb) {
 
         var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
-            url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY+'&format=json&results=3'
-                +'&bucket=id:spotify-WW&bucket=tracks&limit=true&bucket=audio_summary';
+            url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY
+                +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary',
+            params = {
+                format: 'json',
+                results: 3,
+                limit: 'true'
+            };
 
-        if (search.hasOwnProperty('title')) {
-            url += '&title='+search.title;
+        for (var key in search) {
+            if (search.hasOwnProperty(key)) {
+                params[key] = search[key]; 
+            }
         }
-        if (search.hasOwnProperty('key')) {
-            url += '&key='+search.key;
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                url += '&'+key+'='+search[key];
+            }
         }
 
         xhr.open('GET', url);
@@ -40,7 +48,7 @@ window.onload = function() {
         };
         xhr.send(null);
     }
-
+/*
     var searchForm = document.getElementById('searchForm');
     searchForm.addEventListener('submit', function (e) {
         e.preventDefault();
