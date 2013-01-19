@@ -15,12 +15,13 @@
             <div id="index" class="section">
                 <h1>Jazz Standards Library</h1>
                 <div id="start" class="view">
-                    Start
+                    Standards
                     <div id="standards-list">
                     </div>
                 </div>
                 <div id="title" class="view">Title</div>
-                <div id="variation" class="view">Variation</div>     
+                <div id="variation" class="view">Variation</div>
+                <div id="loading" class="view">...</div>   
             </div>
             <div id="about" class="section">
                 <h1>About</h1>
@@ -38,6 +39,12 @@
                     {{/standards}}
                 </div>
             {{/letters}}
+        </script>
+        <script type="text/template" id="template-title">
+            <a href="#" class="link" data-view="start">Standards</a> - {{search}}<br />
+            {{#songs}}
+                <div class="standard-entry"> {{artist_name}} - {{title}}</div>
+            {{/songs}}
         </script>
         <script src="/js/rainbow-custom.min.js"></script>
         <script src="/js/jquery.min.js"></script>

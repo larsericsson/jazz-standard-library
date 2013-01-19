@@ -119,9 +119,9 @@ window.onload = function() {
     function renderStandards() {
         var template = $('#template-standards').html();
         $('#standards-list').html(Mustache.to_html(template, standardsArray));
-        $('#standards-list .standard-entry').click(function () {
+        /*$('#standards-list .standard-entry').click(function () {
             View.title($(this).html());
-        });
+        });*/
     }
 
     function tabs() {
@@ -155,9 +155,10 @@ window.onload = function() {
 
             },
             title: function (title) {
-                _show('title');
+                _show('loading');
                 EchoNest.search({title: title}, function (res) {
                     console.log(res);
+                    _show('title');
                 });
             }       
         };
