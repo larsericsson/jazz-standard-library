@@ -25,6 +25,7 @@ h1 {font-size:2em;}
 #index a:hover {color:#83be20;}
 
 .columns {
+	-webkit-columns: 4;
 	columns: 4;
 }
 
