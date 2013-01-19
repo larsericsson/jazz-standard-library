@@ -69,7 +69,10 @@
             {{/letters}}
         </script>
         <script type="text/template" id="template-title">
-            <a href="#" class="link" data-view="start">Standards</a> - {{search}}<br />
+            <div class="breadcrumb">
+                <a href="#" class="link" data-view="start">Standards</a> - {{search}}<br />
+            </div>
+
             <table id="variations-table">
             <thead>
                 <tr><th>Artist</th><th>Tempo</th><th>Key</th>
@@ -84,7 +87,9 @@
             </table>
         </script>
         <script type="text/template" id="template-variation">
-            <a href="#" class="link" data-view="start">Standards</a> - <a href="#" class="link" data-view="title" data-params="{{activeStandard}}">{{activeStandard}}</a> - Variations
+            <div class="breadcrumb">
+                <a href="#" class="link" data-view="start">Standards</a> - <a href="#" class="link" data-view="title" data-params="{{activeStandard}}">{{activeStandard}}</a> - Variations
+            </div>
              <ul>
             {{#song.tracks}}
                 <li class="{{classAvailable}}"><a href="#" class="player" data-uri="{{uri}}">Play! </a>
