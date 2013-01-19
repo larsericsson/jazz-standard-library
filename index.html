@@ -75,12 +75,19 @@
 
             <table id="variations-table">
             <thead>
-                <tr><th>Artist</th><th>Tempo</th><th>Key</th>
+                <tr>
+                    <th>Artist</th>
+                    <th>Tempo</th>
+                    <th>Key</th>
+                    <th>Variations</th>
             </thead>
             <tbody>
             {{#songs}}
                 <tr class="link listlink" data-view="variation" data-params="{{id}}">
-                    <td>{{artist_name}}</td><td>{{audio_summary.humanTempo}}</td><td>{{audio_summary.humanKey}}</td>
+                    <td>{{artist_name}}</td>
+                    <td>{{audio_summary.humanTempo}}</td>
+                    <td>{{audio_summary.humanKey}}</td>
+                    <td>{{tracks.length}}</td>
                 </tr>
             {{/songs}}
             </tbody>
