@@ -60,6 +60,10 @@ th {
 	text-align: left;
 }
 
+.margin-bottom-medium {
+	margin-bottom: 20px;
+}
+
 tr:nth-of-type(even) {
 	background-color: #DDDDDD;
 }

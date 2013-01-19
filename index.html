@@ -90,7 +90,14 @@
             <div class="breadcrumb">
                 <a href="#" class="link" data-view="start">Standards</a> - <a href="#" class="link" data-view="title" data-params="{{activeStandard}}">{{activeStandard}}</a> - Variations
             </div>
-             <ul>
+            <h2>{{song.artist_name}} - {{song.title}}</h2>
+            <div class="margin-bottom-medium">
+                <div><strong>Tempo: </strong>{{song.audio_summary.humanTempo}} bpm</div>
+                <div><strong>Key: </strong>{{song.audio_summary.humanKey}}</div>
+                <div><strong>Time signature: </strong>{{song.audio_summary.time_signature}}</div>
+            </div>
+            <h3>Recordings</h3>
+            <ul>
             {{#song.tracks}}
                 <li class="{{classAvailable}}"><a href="#" class="player" data-uri="{{uri}}">Play! </a>
                 <span><a href="{{uri}}">{{& name}}</a></span> - 
