@@ -25,10 +25,28 @@ h1 {font-size:2em;}
 #index a:hover {color:#83be20;}
 
 .columns {
-	-webkit-columns: 4;
-	columns: 4;
+	-webkit-columns: 1;
+	columns: 1;
 }
 
 .standard-entry {
   cursor: pointer;
+}
+
+@media all and (min-width: 400px) and (max-width: 600px) {
+	.columns {
+		-webkit-columns: 2;
+	}
+}
+
+@media all and (min-width: 601px) and (max-width: 800px) {
+	.columns {
+		-webkit-columns: 3;
+	}
+}
+
+@media all and (min-width: 801px) {
+	.columns {
+		-webkit-columns: 4;
+	}
 }
