@@ -204,7 +204,6 @@ window.onload = function() {
                     totalTracks++;
                     t = models.Track.fromURI(song.tracks[i].uri, function (track) {
                         tracks[track.uri] = track;
-                        console.log(track);
                         totalTracks--;
                         if (totalTracks === 0) {
                             song.tracks = [];
@@ -223,6 +222,20 @@ window.onload = function() {
     }();
 
     var EchoNest = function () {
+
+        var _addSong = function (songs, song) {
+            var existing = $.grep(songs, function (s) {
+                return s.artist_name == song.artist_name
+                    && s.audio_summary.humanKey == song.audio_summary.humanKey
+                    && s.audio_summary.humanTempo == song.audio_summary.humanTempo;
+            });
+            if (existing.length > 0) {
+                songs[songs.indexOf(existing[0])].tracks = songs[songs.indexOf(existing[0])].tracks.concat(song.tracks);
+            } else {
+                songs.push(song);
+            }
+            return songs;
+        };
 
         return {
             search: function (search, cb) {
@@ -269,7 +282,7 @@ window.onload = function() {
                                 }
                             }
                             if (hasSpotify) {
-                                songs.push(tmpSongs[i]);
+                                songs = _addSong(songs, tmpSongs[i]);
                             }
                         }
                     }
