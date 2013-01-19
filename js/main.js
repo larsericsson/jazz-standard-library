@@ -121,10 +121,13 @@ window.onload = function() {
         $('#standards-list').html(Mustache.to_html(template, standardsArray));
     }
 
-    function getKey(number) {
+    function getKey(key, mode) {
         var keys = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
-        return keys[number];
+        var modes = ["minor", "major"]
+        return keys[key] + " " + modes[mode];
     }
+
+    console.log(getKey(1, 0));
 
     function tabs() {
         var args = models.application.arguments;

@@ -42,8 +42,9 @@
         <script type="text/template" id="template-title">
             <a href="#" class="link" data-view="start">Standards</a> - {{search}}<br />
             {{#songs}}
-                <a href="#" class="link" data-view="variation" data-params="{{id}}"
+                <a href="#" class="link" data-view="variation" data-params="{{id}}">
                 <div class="standard-entry"> {{artist_name}} - {{title}} - {{audio_summary.key}}
+                </a>
                 <ul>
                 {{#tracks}}
                     <li>{{uri}}</li>
