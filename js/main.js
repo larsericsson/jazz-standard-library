@@ -21,35 +21,39 @@ window.onload = function() {
     tabs();
 
 
-    function search(search, cb) {
+    var EchoNest = function () {
+        return {
+            search: function (search, cb) {
+                var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
+                    url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY
+                        +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary',
+                    params = {
+                        format: 'json',
+                        results: 3,
+                        limit: 'true'
+                    };
 
-        var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
-            url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY
-                +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary',
-            params = {
-                format: 'json',
-                results: 3,
-                limit: 'true'
-            };
+                for (var key in search) {
+                    if (search.hasOwnProperty(key)) {
+                        params[key] = search[key]; 
+                    }
+                }
+                for (var key in params) {
+                    if (params.hasOwnProperty(key)) {
+                        url += '&'+key+'='+search[key];
+                    }
+                }
 
-        for (var key in search) {
-            if (search.hasOwnProperty(key)) {
-                params[key] = search[key]; 
+                xhr.open('GET', url);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState != 4 || xhr.status != 200) return;
+                    'function' === typeof cb && cb(JSON.parse(xhr.responseText));
+                };
+                xhr.send(null);
             }
-        }
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                url += '&'+key+'='+search[key];
-            }
-        }
-
-        xhr.open('GET', url);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState != 4 || xhr.status != 200) return;
-            'function' === typeof cb && cb(JSON.parse(xhr.responseText));
         };
-        xhr.send(null);
-    }
+    }();
+
 /*
     var searchForm = document.getElementById('searchForm');
     searchForm.addEventListener('submit', function (e) {
