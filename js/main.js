@@ -65,21 +65,39 @@ window.onload = function() {
         xhr.send(null);
     }
 
-    function search(title, key) {
-        var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV';
+    function search(search, cb) {
 
-        xhr.open('GET', 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY+'&format=json&results=3&title='
-                            +title
-                            +'&bucket=id:spotify-WW&bucket=tracks&limit=true&bucket=audio_summary');
+        var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
+            url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY+'&format=json&results=3'
+                +'&bucket=id:spotify-WW&bucket=tracks&limit=true&bucket=audio_summary';
+
+        if (search.hasOwnProperty('title')) {
+            url += '&title='+search.title;
+        }
+        if (search.hasOwnProperty('key')) {
+            url += '&key='+search.key;
+        }
+
+        xhr.open('GET', url);
         xhr.onreadystatechange = function () {
             if (xhr.readyState != 4 || xhr.status != 200) return;
-
-            var wrapper = document.getElementById('results');
-            wrapper.innerHTML = 'ok';
-            wrapper.innerHTML += xhr.responseText;
+            'function' === typeof cb && cb(JSON.parse(xhr.responseText));
         };
         xhr.send(null);
     }
+
+    var searchForm = document.getElementById('searchForm');
+    searchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        search({
+            title: document.getElementById('searchField').value
+        }, function (res) {
+            var wrapper = document.getElementById('results');
+            wrapper.innerHTML += JSON.stringify(res);
+        });
+        return true;
+    }, false);
+
 
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
 };
