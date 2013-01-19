@@ -17,8 +17,25 @@ window.onload = function() {
         current.style.display = 'block';
     }
 
-    models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
-    tabs();
+    var View = function () {
+        function _hideAll() {
+            var views = document.getElementsByClassName('view');
+            for (var i=0, l = views.length; i<l; i++) {
+                views[i].style.display = 'none';
+            }
+        }
+
+        function _show(id) {
+            _hideAll();
+            document.getElementById(id).style.display = 'block';;
+        }
+
+        return {
+            start: function () {
+                _show('start');
+            }            
+        };
+    }();
 
 
     var EchoNest = function () {
@@ -67,4 +84,9 @@ window.onload = function() {
         return true;
     }, false);
 */
+
+    
+    models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
+    tabs();
+    View.start();
 };
