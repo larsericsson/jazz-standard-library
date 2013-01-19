@@ -91,10 +91,10 @@
                 <span>{{& name}}</span> - 
                 <span>{{duration}}</span> - 
                 {{#artists}}
-                    <span>{{name}}</span>
+                    <span>{{& name}}</span>
                 {{/artists}}
 
-                <span>({{album.name}})</span>
+                <span>({{& album.name}})</span>
             {{/song.tracks}}
             </ul>
         </script>
