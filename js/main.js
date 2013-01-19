@@ -10,6 +10,9 @@ window.onload = function() {
     function renderStandards() {
         var template = $('#template-standards').html();
         $('#standards-list').html(Mustache.to_html(template, standardsArray));
+        $('#standards-list .standard-entry').click(function () {
+            View.title($(this).html());
+        });
     }
 
     function tabs() {
@@ -40,7 +43,14 @@ window.onload = function() {
         return {
             start: function () {
                 _show('start');
-            }            
+
+            },
+            title: function (title) {
+                _show('title');
+                EchoNest.search({title: title}, function (res) {
+                    console.log(res);
+                });
+            }       
         };
     }();
 
@@ -64,7 +74,7 @@ window.onload = function() {
                 }
                 for (var key in params) {
                     if (params.hasOwnProperty(key)) {
-                        url += '&'+key+'='+search[key];
+                        url += '&'+key+'='+params[key];
                     }
                 }
 
@@ -77,20 +87,6 @@ window.onload = function() {
             }
         };
     }();
-
-/*
-    var searchForm = document.getElementById('searchForm');
-    searchForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        search({
-            title: document.getElementById('searchField').value
-        }, function (res) {
-            var wrapper = document.getElementById('results');
-            wrapper.innerHTML += JSON.stringify(res);
-        });
-        return true;
-    }, false);
-*/
 
     
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);

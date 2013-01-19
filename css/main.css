@@ -25,3 +25,8 @@ h1 {font-size:2em;}
 /* Index */
 #index h1, #index ul {margin:0 0 30px;}
 #index a:hover {color:#83be20;}
+
+.standard-entry {
+  cursor: hand;
+  cursor: pointer;
+}
