@@ -187,14 +187,36 @@ window.onload = function() {
             },
 
             variation: function(id) {
-                _show('variation');
-                var song = _getCachedSong(id);
-                var template = $('#template-variation').html();
-                $('#variation').html(Mustache.to_html(template, {
-                    activeStandard: activeStandard,
-                    activeVariation: id,
-                    song: song
-                }));
+                _show('loading');
+                var song = _getCachedSong(id), t, totalTracks = 0;
+
+                var render = function (song) {
+                    _show('variation');
+                    var template = $('#template-variation').html();
+                    $('#variation').html(Mustache.to_html(template, {
+                        activeStandard: activeStandard,
+                        activeVariation: id,
+                        song: song
+                    }));
+                }
+                var tracks = {};
+                for (var i = 0; i < song.tracks.length; i++) {
+                    totalTracks++;
+                    t = models.Track.fromURI(song.tracks[i].uri, function (track) {
+                        tracks[track.uri] = track;
+                        totalTracks--;
+                        if (totalTracks === 0) {
+                            song.tracks = [];
+                            for (var uri in tracks) {
+                                if (tracks.hasOwnProperty(uri)) {
+                                    song.tracks.push(tracks[uri]);
+                                }
+                            }
+                            render(song);
+                        }
+                    });
+                }
+                
             }       
         };
     }();
@@ -240,9 +262,9 @@ window.onload = function() {
                                 tmpSongs[i].audio_summary.humanTempo = Math.round(tmpSongs[i].audio_summary.tempo);
                                 if (tmpSongs[i].tracks[j].hasOwnProperty('foreign_id')) {
                                     hasSpotify = true;
-                                    tmpSongs[i].tracks[j].foreign_id = tmpSongs[i].tracks[j].foreign_id.replace('-WW', '');
-                                    tmpSongs[i].tracks[j] = models.Track.fromURI(tmpSongs[i].tracks[j].foreign_id, function (track) {
-                                    });
+                                    tmpSongs[i].tracks[j] = {
+                                        uri: tmpSongs[i].tracks[j].foreign_id.replace('-WW', '')
+                                    };
                                 }
                             }
                             if (hasSpotify) {
