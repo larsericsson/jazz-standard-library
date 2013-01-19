@@ -1,5 +1,6 @@
 "use strict";
 window.onload = function() {
+    console.log("load");
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
 
@@ -13,10 +14,12 @@ window.onload = function() {
     }
 
     function tabs() {
+        console.log("tabs");
         var args = models.application.arguments;
         if (args) {
             var lastArg = args[args.length - 1];
-            if (lastArg !== 'index' && lastArg !== 'tabs') {
+            if (lastArg !== 'index' && lastArg !== 'about') {
+                console.log("yes");
                 return;
            }
        }
