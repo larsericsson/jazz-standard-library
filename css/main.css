@@ -39,6 +39,21 @@ h1 {font-size:2em;}
 	text-decoration: underline;
 }
 
+.listlink:hover {
+	background-color: #DDDDDD;
+}
+
+td {
+	padding-right: 20px;
+	border: 0;
+	margin: 0;
+}
+
+table {
+	border: 0;
+	width: 100%;
+}
+
 .standards-letter-heading {
 	margin-bottom: 10px;
 }
