@@ -27,10 +27,20 @@ h1 {font-size:2em;}
 .columns {
 	-webkit-columns: 1;
 	columns: 1;
+	margin-bottom: 20px;
 }
 
 .standard-entry {
   cursor: pointer;
+  line-height: 1.8;
+}
+
+.standard-entry:hover {
+	text-decoration: underline;
+}
+
+.standards-letter-heading {
+	margin-bottom: 10px;
 }
 
 @media all and (min-width: 400px) and (max-width: 600px) {
@@ -39,14 +49,9 @@ h1 {font-size:2em;}
 	}
 }
 
-@media all and (min-width: 601px) and (max-width: 800px) {
-	.columns {
-		-webkit-columns: 3;
-	}
-}
 
 @media all and (min-width: 801px) {
 	.columns {
-		-webkit-columns: 4;
+		-webkit-columns: 3;
 	}
 }
