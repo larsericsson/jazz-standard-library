@@ -91,7 +91,7 @@ tbody tr:nth-of-type(odd) {
 	margin-right: 12px;
 }
 
-@media all and (min-width: 400px) and (max-width: 600px) {
+@media all and (min-width: 400px) and (max-width: 800px) {
 	.columns {
 		-webkit-columns: 2;
 	}

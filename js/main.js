@@ -199,6 +199,14 @@ window.onload = function() {
             variation: function(id) {
                 _show('loading');
                 var song = _getCachedSong(id), t, totalTracks = 0;
+                if (song.audio_summary.analysis_url) {
+                    EchoNest.song(song.id, function (song) {
+                        EchoNest.analysis(song.audio_summary.analysis_url, function (analysis) {
+                            console.log("hej");
+                            console.log(analysis);
+                        });
+                    });
+                }
 
                 var render = function (song) {
                     _show('variation');
@@ -249,7 +257,7 @@ window.onload = function() {
 
         return {
             search: function (search, cb) {
-                var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
+                var xhr = new XMLHttpRequest(), API_KEY = 'UNLIBLAG0EIXWH9SQ',
                     url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY
                         +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary',
                     params = {
@@ -299,7 +307,38 @@ window.onload = function() {
                     'function' === typeof cb && cb(songs);
                 };
                 xhr.send(null);
+            },
+
+            song: function (id, cb) {
+                var url = "http://developer.echonest.com/api/v4/song/profile?api_key=FILDTEOIK2HBORODV&format=json&id=" + id + "&bucket=audio_summary";
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState != 4 || xhr.status != 200) return;
+                    var results = JSON.parse(xhr.responseText);
+                    var song = results.response.songs[0];
+                    console.log(song);
+
+                    'function' === typeof cb && cb(song);
+                };
+                xhr.send(null);
+            }, 
+
+            analysis: function (url, cb) {
+                console.log(url);
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', url);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState != 4 || xhr.status != 200) return;
+                    var results = JSON.parse(xhr.responseText);
+                    console.log(results);
+
+                    'function' === typeof cb && cb(results);
+                };
+                xhr.send(null);
             }
+
         };
     }();
 
