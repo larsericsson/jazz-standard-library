@@ -106,14 +106,17 @@
             <h3>Recordings</h3>
             <ul>
             {{#song.tracks}}
-                <li class="{{classAvailable}}"><a href="#" class="player" data-uri="{{uri}}">Play! </a>
-                <span><a href="{{uri}}">{{& name}}</a></span> - 
-                <span>{{duration}}</span> - 
-                {{#artists}}
-                    <span><a href="{{uri}}">{{& name}}</a></span>
-                {{/artists}}
-
-                <span><a href="{{uri}}">({{& album.name}})</a></span>
+                <li class="{{classAvailable}}">
+                <img src="{{& image}}" class="track-thumbnail" />
+                <div class="track-info">
+                    <a href="#" class="player" data-uri="{{uri}}">Play! </a>
+                    <div><a href="{{uri}}">{{& name}}</a></div>
+                    <div>{{duration}}</div> - 
+                    {{#artists}}
+                        <span><a href="{{uri}}">{{& name}}</a></span>
+                    {{/artists}}
+                    <a href="{{uri}}">({{& album.name}})</a>
+                </div>
             {{/song.tracks}}
             </ul>
         </script>

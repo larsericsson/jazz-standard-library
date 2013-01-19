@@ -56,6 +56,15 @@ table {
 	width: 100%;
 }
 
+.track-thumbnail {
+	width: 140px;
+	float: left;
+}
+
+.track-info {
+	float: left;
+}
+
 th {
 	text-align: left;
 }
