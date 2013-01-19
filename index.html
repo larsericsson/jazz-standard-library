@@ -83,7 +83,14 @@
             <a href="#" class="link" data-view="start">Standards</a> - <a href="#" class="link" data-view="title" data-params="{{activeStandard}}">{{activeStandard}}</a> - Variations
              <ul>
             {{#song.tracks}}
-                <li><a href="#" class="player" data-uri="{{uri}}">Play! </a><input type="text" value="{{uri}}" /></li>
+                <li class="{{classAvailable}}"><a href="#" class="player" data-uri="{{uri}}">Play! </a>
+                <span>{{& name}}</span> - 
+                <span>{{duration}}</span> - 
+                {{#artists}}
+                    <span>{{name}}</span>
+                {{/artists}}
+
+                <span>({{album.name}})</span>
             {{/song.tracks}}
             </ul>
         </script>

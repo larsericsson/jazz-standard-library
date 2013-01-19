@@ -202,6 +202,7 @@ window.onload = function() {
                     totalTracks++;
                     t = models.Track.fromURI(song.tracks[i].uri, function (track) {
                         tracks[track.uri] = track;
+                        console.log(track);
                         totalTracks--;
                         if (totalTracks === 0) {
                             song.tracks = [];
