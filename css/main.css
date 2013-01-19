@@ -43,6 +43,15 @@ h1 {font-size:2em;}
 	margin-bottom: 10px;
 }
 
+.shortcuts {
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+.shortcuts a {
+	margin-right: 12px;
+}
+
 @media all and (min-width: 400px) and (max-width: 600px) {
 	.columns {
 		-webkit-columns: 2;
