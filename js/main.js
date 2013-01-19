@@ -153,13 +153,12 @@ window.onload = function() {
             },
             title: function (title) {
                 _show('loading');
-                EchoNest.search({title: title}, function (res) {
-                    console.log(res);
+                EchoNest.search({title: title}, function (songs) {
                     _show('title');
                     var template = $('#template-title').html();
                     $('#title').html(Mustache.to_html(template, {
                         search: title,
-                        songs: res.response.songs
+                        songs: songs
                     }));
                 });
             }       
@@ -193,7 +192,26 @@ window.onload = function() {
                 xhr.open('GET', url);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState != 4 || xhr.status != 200) return;
-                    'function' === typeof cb && cb(JSON.parse(xhr.responseText));
+                    var results = JSON.parse(xhr.responseText);
+                    var tmpSongs = results.response.songs,
+                        songs = [];
+
+                    console.log('songs', tmpSongs);
+                    for (var i = 0; i < tmpSongs.length; i++) {
+                        if (tmpSongs[i].tracks && tmpSongs[i].tracks.length > 0) {
+                            var hasSpotify = false;
+                            for (var j = 0; j < tmpSongs[i].tracks.length; j++) {
+                                if (tmpSongs[i].tracks[j].hasOwnProperty('foreign_id')) {
+                                    hasSpotify = true;
+                                    tmpSongs[i].tracks[j].foreign_id = tmpSongs[i].tracks[j].foreign_id.replace('-WW', '');
+                                }
+                            }
+                            if (hasSpotify) {
+                                songs.push( tmpSongs[i]);
+                            }
+                        }
+                    }
+                    'function' === typeof cb && cb(songs);
                 };
                 xhr.send(null);
             }
