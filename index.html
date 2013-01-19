@@ -93,7 +93,7 @@
              <ul>
             {{#song.tracks}}
                 <li class="{{classAvailable}}"><a href="#" class="player" data-uri="{{uri}}">Play! </a>
-                <span>{{& name}}</span> - 
+                <span><a href="{{uri}}">{{& name}}</a></span> - 
                 <span>{{duration}}</span> - 
                 {{#artists}}
                     <span><a href="{{uri}}">{{& name}}</a></span>
