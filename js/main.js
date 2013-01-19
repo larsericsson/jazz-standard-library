@@ -2,6 +2,7 @@
 window.onload = function() {
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
+    var activeStandard, activeVariation;
 
     var standardsArray = {
         letters: [
@@ -127,8 +128,6 @@ window.onload = function() {
         return keys[key] + " " + modes[mode];
     }
 
-    console.log(getKey(1, 0));
-
     function tabs() {
         var args = models.application.arguments;
         var current = document.getElementById((args && args.length > 0) ? args[0] : 'index');
@@ -161,6 +160,7 @@ window.onload = function() {
             },
             title: function (title) {
                 _show('loading');
+                activeStandard = title;
                 EchoNest.search({title: title}, function (songs) {
                     _show('title');
                     var template = $('#template-title').html();
@@ -171,9 +171,13 @@ window.onload = function() {
                 });
             },
 
-            variation: function() {
+            variation: function(id) {
                 _show('variation');
-                console.log("hej");
+                var template = $('#template-variation').html();
+                $('#variation').html(Mustache.to_html(template, {
+                    activeStandard: activeStandard,
+                    activeVariation: id
+                }));
             }       
         };
     }();
