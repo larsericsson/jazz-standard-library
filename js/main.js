@@ -121,6 +121,35 @@ window.onload = function() {
         $('#standards-list').html(Mustache.to_html(template, standardsArray));
     }
 
+    function getKey(number) {
+        switch (number) {
+            case 0:
+                return "C";
+            case 1:
+                return "C#";
+            case 2:
+                return "D";
+            case 3:
+                return "Eb";
+            case 4:
+                return "E";
+            case 5:
+                return "F";
+            case 6:
+                return "F#";
+            case 7:
+                return "G";
+            case 8:
+                return "Ab";
+            case 9:
+                return "A";
+            case 10:
+                return "Bb";
+            case 11:
+                return "B";
+        }
+    }
+
     function tabs() {
         var args = models.application.arguments;
         var current = document.getElementById((args && args.length > 0) ? args[0] : 'index');
