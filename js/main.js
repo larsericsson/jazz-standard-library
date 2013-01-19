@@ -245,6 +245,10 @@ window.onload = function() {
         var view = $(this).attr('data-view'), param = $(this).attr('data-params');
         view && View[view](param);
     });
+    $('body').on('click', '.player', function (e) {
+        var uri = $(this).attr('data-uri');
+        uri && models.player.play(uri);
+    });
 
     View.start();
 };
