@@ -31,6 +31,16 @@ h1 {font-size:2em;}
 
 .standard-entry {
   cursor: pointer;
+  line-height: 1.8;
+}
+
+.standard-entry:hover {
+	text-decoration: underline;
+}
+
+.standards-letter-heading {
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 @media all and (min-width: 400px) and (max-width: 600px) {
