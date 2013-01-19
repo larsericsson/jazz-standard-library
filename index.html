@@ -43,7 +43,13 @@
         <script type="text/template" id="template-title">
             <a href="#" class="link" data-view="start">Standards</a> - {{search}}<br />
             {{#songs}}
-                <div class="standard-entry"> {{artist_name}} - {{title}}</div>
+                <div class="standard-entry"> {{artist_name}} - {{title}} - {{audio_summary.key}}
+                <ul>
+                {{#tracks}}
+                    <li>{{foreign_id}}</li>
+                {{/tracks}}
+                </ul>
+                </div>
             {{/songs}}
         </script>
         <script src="/js/rainbow-custom.min.js"></script>
