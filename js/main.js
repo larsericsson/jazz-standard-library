@@ -1,12 +1,14 @@
 "use strict";
 window.onload = function() {
-    console.log("load");
     var sp = getSpotifyApi();
     var models = sp.require('$api/models');
 
-    function tabs() {
-        var args = models.application.arguments;
-        var current = document.getElementById(args[0]);
+    function test(args) {
+        console.log('test', args);
+    }
+
+    function tabs(args) {
+        var current = document.getElementById((args && args.length > 0) ? args[0] : 'index');
         var sections = document.getElementsByClassName('section');
         for (var i=0, l = sections.length; i<l; i++) {
             if (current != sections[i]) {
@@ -16,9 +18,23 @@ window.onload = function() {
         current.style.display = 'block';
     }
 
-    tabs();
-    models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
+    function inpoint() {
+        var router = {
+            tabs: tabs,
+            test: test
+        }, args = models.application.arguments;
 
+        if (args.length > 0 && router.hasOwnProperty(args[0])) {
+            router[args[0]](args.slice(1, args.length));
+        } else {
+            tabs(args);
+        }
+    }
+    models.application.observe(models.EVENT.ARGUMENTSCHANGED, inpoint);
+    tabs();
+
+
+/*
     function search(search, cb) {
 
         var xhr = new XMLHttpRequest(), API_KEY = 'FILDTEOIK2HBORODV',
@@ -51,5 +67,5 @@ window.onload = function() {
         });
         return true;
     }, false);
-
+*/
 };
