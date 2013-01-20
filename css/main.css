@@ -29,6 +29,10 @@ h1 {font-size:2em;}
 	margin-bottom: 20px;
 }
 
+.logo {
+	margin: 0 auto 20px;
+}
+
 .standard-entry {
   cursor: pointer;
   line-height: 1.8;
@@ -119,8 +123,8 @@ tbody tr:nth-of-type(odd) {
 .filter-container {
 	border-radius: 10px;
 	position: absolute;
-	top: 10px;
-	left: 500px;
+	top: 150px;
+	left: 530px;
 	padding: 6px;
 	//background-color: rgba(100, 100, 100, 0.6);
 }
