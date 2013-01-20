@@ -181,15 +181,15 @@ window.onload = function() {
             return null;
         }
 
-        function _visualize(data) {
+        function _visualize(data, elem, color) {
             var n = 1, // number of layers
                 m = data.segments.length, // number of samples per layer
                 stack = d3.layout.stack().offset("wiggle"),
                 layers0 = stack([getMax(data.segments)]);
                 //layers1 = stack([getMin(data.segments)]);
 
-            var width = $('#visual').width(),
-                height = 200;
+            var width = $(elem).width(),
+                height = 150;
 
             var x = d3.scale.linear()
                 .domain([0, m - 1])
@@ -201,14 +201,14 @@ window.onload = function() {
                 .range([height, 0]);
 
             var color = d3.scale.linear()
-                .range(["#aad", "#556"]);
+                .range([color, color]);
 
             var area = d3.svg.area()
                 .x(function(d) { return x(d.x); })
                 .y0(function(d) { return y(d.y0); })
                 .y1(function(d) { return y(d.y0 + d.y); });
 
-            var svg = d3.select("#visual").append("svg")
+            var svg = d3.select(elem).append("svg")
                 .attr("width", width)
                 .attr("height", height);
 
@@ -293,10 +293,26 @@ window.onload = function() {
                         $('#visual').html('<span class="loading"></span>');
                         _startLoaders();
 
-                        EchoNest.song(song.id, function (song) {
-                            EchoNest.analysis(song.audio_summary.analysis_url, function (analysis) {
+                        var updateGraph = function (coll) {
+                            if (models.player.playing && coll.indexOf(models.player.track) != -1) {
+                                $('#visualActive svg').width($('#visual').width() * models.player.position / models.player.track.duration);
+                                setTimeout(function () { updateGraph(coll);}, 300);
+                            }
+                        };
+
+                        models.player.observe(models.EVENT.CHANGE, function(event) {
+                            if (models.player.playing && song.collection.indexOf(models.player.track) != -1) {
+                                updateGraph(song.collection);
+                            }
+                        });
+
+                        EchoNest.song(song.id, function (songData) {
+                            EchoNest.analysis(songData.audio_summary.analysis_url, function (analysis) {
                                 $('#visual .loading').remove();
-                                _visualize(analysis);
+                                _visualize(analysis, '#visual', '#ccc');
+                                _visualize(analysis, '#visualActive', '#888');
+                                $('#visualActive svg').width(0);
+                                updateGraph(song.collection);
                             });
                         });
                     }
