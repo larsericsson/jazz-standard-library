@@ -232,7 +232,7 @@ window.onload = function() {
                 var res = [];
                 for (var i = 0; i < segments.length; i++) {
                     res.push({
-                        x: i,
+                        x: segments[i].start * 3,
                         y: (segments[i].loudness_max + 100) / 100
                     });
                 }
@@ -282,7 +282,7 @@ window.onload = function() {
 
                         EchoNest.song(song.id, function (song) {
                             EchoNest.analysis(song.audio_summary.analysis_url, function (analysis) {
-                                $('#visual').html('ok man');
+                                $('#visual .loading').remove();
                                 _visualize(analysis);
                             });
                         });
