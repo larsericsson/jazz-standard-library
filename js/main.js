@@ -230,15 +230,16 @@ window.onload = function() {
             }
             function getMax(segments) {
                 var res = [],
-                    duration = 0;
+                    duration = 0, loudness_min = 0;
                 for (var i = 0; i < segments.length; i++) {
                     duration += segments[i].duration;
+                    loudness_min = loudness_min < (segments[i].loudness_max + 130) ? (segments[i].loudness_max + 130) : loudness_min;
                 }
 
                 for (var i = 0; i < segments.length; i++) {
                     res.push({
                         x: segments[i].start / duration * segments.length,
-                        y: segments[i].loudness_max + 130
+                        y: segments[i].loudness_max + loudness_min
                     });
                 }
                 return res;
