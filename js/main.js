@@ -396,7 +396,6 @@ window.onload = function() {
                     if (xhr.readyState != 4 || xhr.status != 200) return;
                     var results = JSON.parse(xhr.responseText);
                     var song = results.response.songs[0];
-                    console.log(song);
 
                     'function' === typeof cb && cb(song);
                 };
@@ -404,14 +403,12 @@ window.onload = function() {
             }, 
 
             analysis: function (url, cb) {
-                console.log(url);
                 var xhr = new XMLHttpRequest();
 
                 xhr.open('GET', url);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState != 4 || xhr.status != 200) return;
                     var results = JSON.parse(xhr.responseText);
-                    console.log(results);
 
                     'function' === typeof cb && cb(results);
                 };
