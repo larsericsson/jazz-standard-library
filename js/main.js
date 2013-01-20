@@ -333,7 +333,7 @@ window.onload = function() {
             search: function (search, cb) {
                 var xhr = new XMLHttpRequest(), API_KEY = 'UNLIBLAG0EIXWH9SQ',
                     url = 'http://developer.echonest.com/api/v4/song/search?api_key='+API_KEY
-                        +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary',
+                        +'&bucket=id:spotify-WW&bucket=tracks&bucket=audio_summary&sort=song_hotttnesss-desc',
                     params = {
                         format: 'json',
                         results: 100,

@@ -76,7 +76,6 @@
             <table id="variations-table">
             <thead>
                 <tr>
-                    <th></th>
                     <th>Artist</th>
                     <th>Tempo</th>
                     <th>Key</th>
@@ -86,7 +85,6 @@
             <tbody>
             {{#songs}}
                 <tr class="link listlink" data-view="variation" data-params="{{id}}">
-                    <td><div class="arrow player" data-uri="{{uri}}"></div></td>
                     <td>{{artist_name}}</td>
                     <td>{{audio_summary.humanTempo}}</td>
                     <td>{{audio_summary.humanKey}}</td>
