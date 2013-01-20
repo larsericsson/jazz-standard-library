@@ -431,10 +431,10 @@ window.onload = function() {
             var label = $(this).attr('data-label');
             if ($(this).find('.standard-entry:visible').length > 0) {
                 $('#'+label).show();
-                $('#hLink'+label).show();
+                $('#hLink'+label).removeClass('disabled');;
             } else {
                 $('#'+label).hide();
-                $('#hLink'+label).hide(); 
+                $('#hLink'+label).addClass('disabled'); 
             }
         });
     };
