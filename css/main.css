@@ -107,6 +107,11 @@ tbody tr:nth-of-type(odd) {
 	right: 35px;
 }
 
+#visual {
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
+
 .filter-search:focus {
 	background-color: #fff;
 }
