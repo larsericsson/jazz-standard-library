@@ -229,11 +229,16 @@ window.onload = function() {
                 return res;
             }
             function getMax(segments) {
-                var res = [];
+                var res = [],
+                    duration = 0;
+                for (var i = 0; i < segments.length; i++) {
+                    duration += segments[i].duration;
+                }
+
                 for (var i = 0; i < segments.length; i++) {
                     res.push({
-                        x: segments[i].start * 3,
-                        y: (segments[i].loudness_max + 100) / 100
+                        x: segments[i].start / duration * segments.length,
+                        y: segments[i].loudness_max + 130
                     });
                 }
                 return res;
