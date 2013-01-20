@@ -418,10 +418,24 @@ window.onload = function() {
         };
     }();
 
+    var renderAlphabet = function () {
+        $('.standards-letter').each(function () {
+            var label = $(this).attr('data-label');
+            if ($(this).find('.standard-entry:visible').length > 0) {
+                $('#'+label).show();
+                $('#hLink'+label).show();
+            } else {
+                $('#'+label).hide();
+                $('#hLink'+label).hide(); 
+            }
+        });
+    };
+
     
     models.application.observe(models.EVENT.ARGUMENTSCHANGED, tabs);
     tabs();
     renderStandards();
+    renderAlphabet();
 
     $('body').on('click', '.link', function (e) {
         var view = $(this).attr('data-view'), param = $(this).attr('data-params');
@@ -432,6 +446,18 @@ window.onload = function() {
         var uri = $(this).attr('data-uri');
         uri && models.player.play(uri);
         return false;
+    });
+    $('body').on('keyup', '#filter', function (e) {
+        var text = $(this).val().toLowerCase();
+        $('.standard-entry').each(function () {
+            if (text == '' || !text || $(this).html().toLowerCase().indexOf(text) >= 0) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        renderAlphabet();
+        e.preventDefault();
     });
 
     View.start();

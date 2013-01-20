@@ -16,34 +16,35 @@
                 <h1>Jazz Standards Library</h1>
                 <div id="start" class="view">
                     <div class="shortcuts">
-                        <a href="#0">0</a>
-                        <a href="#A">A</a>
-                        <a href="#B">B</a>
-                        <a href="#C">C</a>
-                        <a href="#D">D</a>
-                        <a href="#E">E</a>
-                        <a href="#F">F</a>
-                        <a href="#G">G</a>
-                        <a href="#H">H</a>
-                        <a href="#I">I</a>
-                        <a href="#J">J</a>
-                        <a href="#K">K</a>
-                        <a href="#L">L</a>
-                        <a href="#M">M</a>
-                        <a href="#N">N</a>
-                        <a href="#O">O</a>
-                        <a href="#P">P</a>
-                        <a href="#Q">Q</a>
-                        <a href="#R">R</a>
-                        <a href="#S">S</a>
-                        <a href="#T">T</a>
-                        <a href="#U">U</a>
-                        <a href="#V">V</a>
-                        <a href="#W">W</a>
-                        <a href="#X">X</a>
-                        <a href="#Y">Y</a>
-                        <a href="#Z">Z</a>
+                        <a href="#0" id="hLink0">0</a>
+                        <a href="#A" id="hLinkA">A</a>
+                        <a href="#B" id="hLinkB">B</a>
+                        <a href="#C" id="hLinkC">C</a>
+                        <a href="#D" id="hLinkD">D</a>
+                        <a href="#E" id="hLinkE">E</a>
+                        <a href="#F" id="hLinkF">F</a>
+                        <a href="#G" id="hLinkG">G</a>
+                        <a href="#H" id="hLinkH">H</a>
+                        <a href="#I" id="hLinkI">I</a>
+                        <a href="#J" id="hLinkJ">J</a>
+                        <a href="#K" id="hLinkK">K</a>
+                        <a href="#L" id="hLinkL">L</a>
+                        <a href="#M" id="hLinkM">M</a>
+                        <a href="#N" id="hLinkN">N</a>
+                        <a href="#O" id="hLinkO">O</a>
+                        <a href="#P" id="hLinkP">P</a>
+                        <a href="#Q" id="hLinkQ">Q</a>
+                        <a href="#R" id="hLinkR">R</a>
+                        <a href="#S" id="hLinkS">S</a>
+                        <a href="#T" id="hLinkT">T</a>
+                        <a href="#U" id="hLinkU">U</a>
+                        <a href="#V" id="hLinkV">V</a>
+                        <a href="#W" id="hLinkW">W</a>
+                        <a href="#X" id="hLinkX">X</a>
+                        <a href="#Y" id="hLinkY">Y</a>
+                        <a href="#Z" id="hLinkZ">Z</a>
                     </div>
+                    <div><input id="filter" type="text" placeholder="Filter..."/></div>
                     <div id="standards-list">
                     </div>
                 </div>
@@ -61,7 +62,7 @@
         <script type="text/template" id="template-standards">
             {{#letters}}
                 <h2 class="standards-letter-heading" id="{{label}}">{{label}}</h2>
-                <div class="standards-letter columns">
+                <div class="standards-letter columns" data-label="{{label}}">
                     {{#standards}}
                         <div class="standard-entry link" data-view="title" data-params="{{title}}">{{title}}</div>
                     {{/standards}}
