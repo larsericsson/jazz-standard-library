@@ -293,10 +293,15 @@ window.onload = function() {
                         $('#visual').html('<span class="loading"></span>');
                         _startLoaders();
 
+                        var updating = false;
                         var updateGraph = function (coll) {
-                            if (models.player.playing && coll.indexOf(models.player.track) != -1) {
+                            updating = false;
+                            if (coll.indexOf(models.player.track) != -1) {
                                 $('#visualActive svg').width($('#visual').width() * models.player.position / models.player.track.duration);
-                                setTimeout(function () { updateGraph(coll);}, 300);
+                                if (models.player.playing) {
+                                    updating = true;
+                                    setTimeout(function () { updateGraph(coll);}, 300);
+                                }
                             }
                         };
 
@@ -313,6 +318,15 @@ window.onload = function() {
                                 _visualize(analysis, '#visualActive', '#888');
                                 $('#visualActive svg').width(0);
                                 updateGraph(song.collection);
+                                $('#visuals').on('click', '#visualActive', function (e) {
+                                    if (song.collection.indexOf(models.player.track) != -1) {
+                                        var position = e.offsetX / $('#visual').width() * models.player.track.duration;
+                                        models.player.position = position;
+                                        if (!updating) {
+                                            updateGraph(song.collection);
+                                        }
+                                    }
+                                });
                             });
                         });
                     }
