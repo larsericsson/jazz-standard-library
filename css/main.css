@@ -103,6 +103,11 @@ tbody tr:nth-of-type(odd) {
 	}
 }
 
+#coverArt {
+  width: 200px;
+  height: 200px;
+}
+
 .loading {
   display: block;
   width: 30px;

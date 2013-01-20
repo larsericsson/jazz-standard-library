@@ -280,6 +280,14 @@ window.onload = function() {
                     var list = new views.List(song.collection);
                     list.node.classList.add("sp-light");
 
+                    var img = new views.Image(song.collection.get(0).album.image);
+                    $('#coverArt').html();
+                    $(img.node).css({
+                        width: $('#coverArt').width(),
+                        height: $('#coverArt').height()
+                    });
+                    $('#coverArt').append(img.node);
+
                     $('#variation').append(list.node);
                     if (song.audio_summary.analysis_url) {
                         $('#visual').html('<span class="loading"></span>');
