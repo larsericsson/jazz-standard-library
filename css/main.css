@@ -107,7 +107,7 @@ tbody tr:nth-of-type(odd) {
 
 #coverArt {
 	position: absolute;
-	top: 0;
+	top: 200px;
 	right: 35px;
 }
 
@@ -156,8 +156,8 @@ tbody tr:nth-of-type(odd) {
 }
 
 #coverArt {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 #visuals {
