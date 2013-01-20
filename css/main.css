@@ -30,7 +30,8 @@ h1 {font-size:2em;}
 }
 
 .logo {
-	margin: 0 auto 20px;
+	display: block;
+	margin: 0 auto 40px;
 }
 
 .standard-entry {
@@ -88,6 +89,7 @@ tbody tr:nth-of-type(odd) {
 .shortcuts {
 	font-size: 14px;
 	margin-bottom: 20px;
+	padding-top: 30px;
 }
 
 .filter-search {
@@ -123,7 +125,7 @@ tbody tr:nth-of-type(odd) {
 .filter-container {
 	border-radius: 10px;
 	position: absolute;
-	top: 150px;
+	top: 200px;
 	left: 530px;
 	padding: 6px;
 	//background-color: rgba(100, 100, 100, 0.6);
