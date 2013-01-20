@@ -86,8 +86,45 @@ tbody tr:nth-of-type(odd) {
 	margin-bottom: 20px;
 }
 
+.filter-search {
+	-webkit-transition: all 0.5s ease 0s;
+	border-radius: 4px;
+	border-left: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #bbb;
+	width: 200px;
+	height: 20px;
+	margin-right: 10%;
+	padding: 3px;
+	background-color: #eee;
+	box-shadow: 0 1px 1px rgba(0,0,0,.3) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+
+.filter-search:focus {
+	background-color: #fff;
+}
+
+.filter-container {
+	border-radius: 10px;
+	position: absolute;
+	top: 10px;
+	left: 500px;
+	padding: 6px;
+	//background-color: rgba(100, 100, 100, 0.6);
+}
+
 .shortcuts a {
 	margin-right: 12px;
+}
+
+.disabled {
+	color: #bbbbbb;
+	pointer-events: none;
+}
+
+.disabled:hover {
+	text-decoration: none;
 }
 
 @media all and (min-width: 400px) and (max-width: 800px) {
